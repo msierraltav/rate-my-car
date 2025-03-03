@@ -2,6 +2,10 @@
 
 The objetive of this priject is create a simple internal search interface for estimating the average market value for a year/make model.
 
+## Documents
+
+[Design Document](./docs/design)
+
 ## features
 
 [ ] Interface nice and clean.
@@ -13,17 +17,21 @@ The objetive of this priject is create a simple internal search interface for es
 
 This project was built using docker containers to run a development server. I decide to use this strategy to avoid issues with the configurations from Windows/WSL/Centos7 , also the target server is a out of service Centos7 server with lack of updates and unsoported, so I decide to use docker containers to give me the chance to use more recent versions of PHP/Apache, and easily could be moved to a more secure and updated server if is neccesary.
 
-The first time build the server
+
 
 ```bash
+# The first time build the server
 docker build -t php-server
-```
-then start your development container.
 
-```bash
+# then start your development container.
 docker run -p 8080:80 -d -v $(pwd)/src:/var/www/html/ php-server
+
+
+# and if you need enter to the container.
+docker exec -it 'id ' bash
 ```
 
+then you could open in your browser `http://localhost:8080`.
 
 ## deployment
 
