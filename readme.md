@@ -4,7 +4,7 @@ The objetive of this project is create a simple internal search interface for es
 
 ## Documents
 
-[Design Document](./docs/design)
+[Design Document](./docs/design.md)
 
 ## features and work in progress.
 
