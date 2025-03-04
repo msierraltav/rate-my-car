@@ -6,12 +6,13 @@ The objetive of this project is create a simple internal search interface for es
 
 [Design Document](./docs/design)
 
-## features
+## features and work in progress.
 
-[ ] Interface nice and clean.
-[ ] Search Page
-[ ] Results page
-
+- [x] Interface nice and clean
+- [] Search Page
+- [] Results page
+- [] db
+- [] the search algorithm
 
 ## development
 
@@ -25,7 +26,6 @@ docker build -t php-server
 
 # then start your development container.
 docker run -p 8080:80 -d -v $(pwd)/src:/var/www/html/ php-server
-
 
 # and if you need enter to the container.
 docker exec -it 'id ' bash
@@ -42,6 +42,8 @@ docker run -p 80:80 -d --restart unless-stopped -v $(pwd)/src:/var/www/html/ php
 
 ##  Journal
 
+### 03 march 2025
+
 This project have a target server with Centos7 that is end of life on June 30th.
 this means that is imposible to update it or install new software using the defaults sources because their repositories are offline,
 one solution is use the Centos vault or a mirror , in this case I use a backup from AlmaLinux a raliable project that provide a community supported spiritual sucessor to CentOS compatible with RHEL, backed by several enterprices like AWS, Microsoft and others.
@@ -57,6 +59,13 @@ move all the project to a more secure and updated server.
 I assume that server is the only thing that we could for now.
 I used to work with limited ressources in the university and in my first job, but the works needs to be done.
 
-so then I install docker in the server.
+so then I install docker in the server and I think is ready to receive the code.
+
+### 04 March 2025
+
+I not was touched php from my Thesis project in the university but i think is a good start point.
+in my opinion i prefer to have a strong typed language that a python code (yes is posible to use type but not mandatory) also create IA-assisted-code with python is easy so ... I want a challenge ( bad idea because this is a house assetsment)
+
+This day I starting to create the webpage and the first 'design', I just keep simple but have a nice and dark style to not have an alone form with a white background burning your eyes.
 
 

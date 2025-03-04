@@ -3,12 +3,13 @@
     <head>
         <title>Rate my Car</title>
         <link rel="stylesheet" href="styles.css">
+        <script src="scripts.js"></script>
     </head>
     <body>
         <h1>Rate my Car</h1>
         <section>
           <div class="input-form">
-            <form>
+            <form method="post">
               <div class="search-inputs"> 
                 <div class="input-group">
                   <label for="vehicle">Car</label>
@@ -18,14 +19,10 @@
                   <label for="mileage">Mileage</label>
                   <input type="text" id="mileage" placeholder="Car model">
                 </div>
-                <input class="submit-button" type="submit" value="Submit">
+                <input class="submit-button" type="submit" value="Submit" onclick="submitForm()">
               </div>
             </form>
           </div>
         </section>
-        <?php
-            $saludo = 'Hola mundo';
-            echo $saludo;
-        ?>
     </body>
 </html>
