@@ -12,6 +12,14 @@ Objectives
 
 - input 2 ( optional) : Mileage ( example : 150.000 miles)
 
+
+#### actions
+
+- The user writes in the input one
+
+- 
+
+
 ### Results Page
 
 - Display estimated market price computed based on listing for similar year + make + model vehicles
