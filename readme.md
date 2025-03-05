@@ -18,8 +18,6 @@ The objetive of this project is create a simple internal search interface for es
 
 This project was built using docker containers to run a development server. I decide to use this strategy to avoid issues with the configurations from Windows/WSL/Centos7 , also the target server is a out of service Centos7 server with lack of updates and unsoported, so I decide to use docker containers to give me the chance to use more recent versions of PHP/Apache, and easily could be moved to a more secure and updated server if is neccesary.
 
-
-
 ```bash
 # The first time build the server
 docker build -t php-server .
@@ -67,5 +65,14 @@ I not was touched php from my Thesis project in the university but i think is a 
 in my opinion i prefer to have a strong typed language that a python code (yes is posible to use type but not mandatory) also create IA-assisted-code with python is easy so ... I want a challenge ( bad idea because this is a house assetsment)
 
 This day I starting to create the webpage and the first 'design', I just keep simple but have a nice and dark style to not have an alone form with a white background burning your eyes.
+
+after figure it out how to enable postgreSQL into my docker php container I proceed to set up my postgreSQL container and starting to see how to import the data.
+
+Finally I test if all of this works in the remote server, and fortunelly it works!
+
+so I assume we could continue with the development
+
+### 05 March 2025
+
 
 

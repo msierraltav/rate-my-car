@@ -7,6 +7,14 @@
     </head>
     <body>
         <h1>Rate my Car</h1>
+
+        <?php
+          include_once('conexion.php');
+          $conexion = new Conexion();
+          $conexion->ConexionDB();
+        ?>
+
+
         <section>
           <div class="input-form">
             <form method="post">
