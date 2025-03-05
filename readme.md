@@ -22,7 +22,7 @@ This project was built using docker containers to run a development server. I de
 
 ```bash
 # The first time build the server
-docker build -t php-server
+docker build -t php-server .
 
 # then start your development container.
 docker run -p 8080:80 -d -v $(pwd)/src:/var/www/html/ php-server
@@ -37,7 +37,7 @@ then you could open in your browser `http://localhost:8080`.
 
 ```bash
 
-docker run -p 80:80 -d --restart unless-stopped -v $(pwd)/src:/var/www/html/ php-server
+docker run -p 80:80 -d -v $(pwd)/src:/var/www/html/
 ```
 
 ##  Journal
