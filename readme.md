@@ -84,6 +84,11 @@ so the first step is define the data for the db based on the file, to achieve th
 
 The data is all contained in one big file, so I believe the intention is spread out and optimize in relational style to 
 
+I may confess that I create the first script of python using copilot, and then I modified it by my own needs.
+( I never was use pandas before 🥲)
+
+Is interesting how many attacks I received to get access to the db and the webpage.
+
 some key points : 
 
 VIN number : is like a car fingerprint  as not two vehicles in operation with the same number, is composed of 17 characters (digits and capital letters)
@@ -111,3 +116,9 @@ following with the vehicle information we have
 - make (1707) : 
 - model (264103) : each model is associated to a maker
 - trim (204430): 
+- listing_price : 
+- listing_mileage (number)
+- used (bool)
+- certified (bool)
+- style(47264)(string) : look
+
