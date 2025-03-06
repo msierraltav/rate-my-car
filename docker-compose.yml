@@ -1,0 +1,30 @@
+services:
+  database: 
+    image: 'postgres:17.4-alpine3.21'
+    container_name: rate-my-car-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '${POSTGRES_PORT}:5432'
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rate-my-car-app
+    depends_on:
+      - database
+    ports: 
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html/
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+    
