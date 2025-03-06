@@ -13,11 +13,10 @@
           $conexion = new Conexion();
           $conexion->ConexionDB();
         ?>
-
-
+        
         <section>
           <div class="input-form">
-            <form method="post">
+            <form method="post" action="#">
               <div class="search-inputs"> 
                 <div class="input-group">
                   <label for="vehicle">Car</label>
@@ -25,7 +24,7 @@
                 </div>
                 <div class="input-group">
                   <label for="mileage">Mileage</label>
-                  <input type="text" id="mileage" placeholder="Car model">
+                  <input type="text" id="mileage" placeholder="6544">
                 </div>
                 <input class="submit-button" type="submit" value="Submit" onclick="submitForm()">
               </div>

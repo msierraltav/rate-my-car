@@ -66,7 +66,7 @@ in my opinion i prefer to have a strong typed language that a python code (yes i
 
 This day I starting to create the webpage and the first 'design', I just keep simple but have a nice and dark style to not have an alone form with a white background burning your eyes.
 
-after figure it out how to enable postgreSQL into my docker php container I proceed to set up my postgreSQL container and starting to see how to import the data.
+after figure it out how to enable postgreSQL driver into my docker php container I proceed to set up my postgreSQL container and starting to see how to import the data.
 
 Finally I test if all of this works in the remote server, and fortunelly it works!
 
@@ -79,5 +79,35 @@ Fortunately, after a couple of hours of research and correctly configuring my Do
 
 ### 06 March 2025
 
+Now I have the environment ready, and I could keep my mind with the data and how to do the calculations to achieve the task.
+so the first step is define the data for the db based on the file, to achieve this I use python/pandas to analyze the data.
+
+The data is all contained in one big file, so I believe the intention is spread out and optimize in relational style to 
+
+some key points : 
+
+VIN number : is like a car fingerprint  as not two vehicles in operation with the same number, is composed of 17 characters (digits and capital letters)
+
+the csv file have 4713914
+
+so with that in mind, for the following columns is better to identify it in their own elements.
+
+[columnName(unique_registry)]
+
+dealers_name(58073) : we could assume that we have differents dealers with the following data
+
+- dealer_name(58073)
+- dealer_street(58072) (exists two dealers with the same address?)
+- dealer_city(6821)
+- dealer_state(66)
+- dealer_zip (15665)
 
 
+- seller_website(58163)
+
+following with the vehicle information we have
+
+- vin : unique identifier
+- make (1707) : 
+- model (264103) : each model is associated to a maker
+- trim (204430): 

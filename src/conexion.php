@@ -13,10 +13,9 @@
       $connexion = null;
 
       $connectionString = "pgsql:host=$hosturl;port=$hostport;dbname=$dbName;user=$user;password=$password";
-      
+
       try{
         $connexion = new PDO ($connectionString);
-        echo " Sucessfull connection";
       }
       catch (PDOException $error){
         echo "Error: " . $error->getMessage();

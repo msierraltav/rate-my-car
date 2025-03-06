@@ -17,7 +17,7 @@ Objectives
 
 - The user writes in the input one
 
-- 
+- The user input vehicle and mileage
 
 
 ### Results Page
