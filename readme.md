@@ -74,7 +74,10 @@ so I assume we could continue with the development
 
 ### 05 March 2025
 
-But, I forgot that Postgre sql could give me problems with the conecction and the setup of the requirements, so finally I make it run and now I have the database running in the server and php running. the next step is upload the almost 2gb of information.
+When I tried to run PostgreSQL, I encountered a couple of blockers in the connection between the database and PHP.
+Fortunately, after a couple of hours of research and correctly configuring my Docker setup, I got it running. Now I have the database running on the server with PHP. The next step is to upload the almost 2GB file of information.
+
+### 06 March 2025
 
 
 
