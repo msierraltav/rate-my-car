@@ -35,7 +35,7 @@ then you could open in your browser `http://localhost:8080`.
 
 ```bash
 
-docker run -p 80:80 -d -v $(pwd)/src:/var/www/html/
+docker compose up -d --build
 ```
 
 ##  Journal
@@ -73,6 +73,8 @@ Finally I test if all of this works in the remote server, and fortunelly it work
 so I assume we could continue with the development
 
 ### 05 March 2025
+
+But, I forgot that Postgre sql could give me problems with the conecction and the setup of the requirements, so finally I make it run and now I have the database running in the server and php running. the next step is upload the almost 2gb of information.
 
 
 
