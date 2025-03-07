@@ -120,5 +120,19 @@ following with the vehicle information we have
 - listing_mileage (number)
 - used (bool)
 - certified (bool)
-- style(47264)(string) : look
+- style (47264) (string) :
+    looks like everyone have different ways to decribe it.
+- driven_wheels (4856)(string):  
+    pretty the same as style
+- engine (42165) string: 
+    non standart
+- fuel_type(1617) (string)
+     'Essence' this is real?
+- exterior_color (44303) (string)
+- interior_color (37803) (string)
+
+- first_seen_date(624) date
+- last_seen_date(5) date
+- dealer_vdp_last_seen_date (456) date
+- listing_status : [nan 'in_transit']
 

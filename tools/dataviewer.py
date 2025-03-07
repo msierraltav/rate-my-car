@@ -64,54 +64,6 @@ def print_unique_values(df: pd.DataFrame, column: Optional[str] = None):
         # print("Unique values:", values)
         print("-----")
 
-def analyze_vehicle_hierarchy(df: pd.DataFrame) -> Dict:
-  """
-  Analyze the hierarchical relationship between make, model, and trim.
-  
-  Args:
-    df: Input DataFrame containing vehicle data
-    
-  Returns:
-    Dictionary with makes as keys, models as sub-keys, and trims as values
-  """
-  if not all(col in df.columns for col in ['make', 'model', 'trim']):
-    print("Error: DataFrame must contain 'make', 'model', and 'trim' columns")
-    return {}
-  
-  hierarchy = {}
-  
-  # Group by make and model to build the hierarchy
-  for make in df['make'].unique():
-    hierarchy[make] = {}
-    make_data = df[df['make'] == make]
-    
-    for model in make_data['model'].unique():
-      model_data = make_data[make_data['model'] == model]
-      trims = model_data['trim'].unique().tolist()
-      hierarchy[make][model] = trims
-  
-  return hierarchy
-
-
-def print_vehicle_hierarchy(hierarchy: Dict):
-  """
-  Print the hierarchical relationship between make, model, and trim.
-  
-  Args:
-    hierarchy: Dictionary with the vehicle hierarchy
-  """
-  print("\nVehicle Hierarchy:")
-  print("=================")
-  
-  for make, models in hierarchy.items():
-    print(f"Make: {make}")
-    for model, trims in models.items():
-      print(f"  Model: {model}")
-      print(f"    Trims: {trims[:5]}{'...' if len(trims) > 5 else ''}")
-      print(f"    Total trims: {len(trims)}")
-    print("-----")
-
-
 def main():
   parser = argparse.ArgumentParser(description="CSV Data Viewer")
   parser.add_argument("file", help="Path to CSV file")
@@ -125,8 +77,7 @@ def main():
     print(f"Detected columns: {df.columns}")
     print("-----")
     print_unique_values(df, args.column)
-    # hierarchy = analyze_vehicle_hierarchy(df)
-    # print_vehicle_hierarchy(hierarchy)
+
   except Exception as e:
     print(f"Error: {e}")
 
