@@ -8,7 +8,7 @@ function parseCarInput(vehicle, mileage) {
     year: 0,
     manufacturer: '',
     model: '',
-    mileage: -1
+    mileage: 0
   };
 
   const yearMatch = vehicle.match(/\b(\d{4})\b/);
