@@ -36,7 +36,7 @@
       return $data;
     }
 
-    function queryBuilder($year, $manufacturer, $model, $mileage, $limit = 0, $where = true) {
+    function queryBuilder($year, $manufacturer, $model, $mileage, $limit = 0, $where = true, $between = false) {
 
       $query = $where ? "SELECT * FROM vehicle_inventory" : "FROM vehicle_inventory";
 
@@ -53,12 +53,16 @@
       }
 
       if ($mileage >= 0) {
-        $query .= " AND listing_mileage = '$mileage'";
+        $lower = $mileage * 0.80;
+        $upper = $mileage * 1.20;
+        $query .= $between 
+          ? " AND listing_mileage BETWEEN '" . $lower . "' AND '". $upper ."'"
+          : " AND listing_mileage = '". $mileage . "'";
       }
 
       $query .= " AND listing_price IS NOT NULL AND listing_mileage IS NOT NULL";
 
-      // zero is limitless  (???)
+      // zero is limitless!!  (???)
       $query .= $limit == 0 ? "" : " LIMIT $limit" ;
 
       return $query;
@@ -66,8 +70,8 @@
 
     function linearRegresion($year, $manufacturer, $model, $mileage){
 
-      $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope FROM vehicle_inventory";
-      $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept FROM vehicle_inventory";
+      $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, -1 , 0, false);
+      $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, -1 , 0, false);
 
       $slope_result = $this->execQuery($slope_query);
       $intercept_result = $this->execQuery($intercept_query);
@@ -80,7 +84,7 @@
     }
 
     function getVehicleList($year, $manufacturer, $model, $mileage){
-      $cars_query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100);
+      $cars_query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100, true, true);
       $result = $this->execQuery($cars_query);
       return $result;
     }
