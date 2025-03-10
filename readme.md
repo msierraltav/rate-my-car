@@ -138,4 +138,12 @@ following with the vehicle information we have
 
 # 09 March 2025
 
-After analyce the data , the way to predict the po
+After analyce the data , the way to predict the price should be with linear regresion, so using posgress fucntion to calculate the slope between the data and the intersection point with the Y axis, is posible to apply the ecuations to predict the price.
+
+if we add a mileage , we search all the cars with values near to the mileage of the user car, between 80% to 120% of the price.
+
+if the car is new ( mileage 0 ) we take the average price from all the new cars in the list.
+
+but if we don't especified mileage, we take all the cars with similar characteristics.
+
+Maybe we could use other correlations to check the price, like the location, because differents zones could have different cost maintentace or more hard roads.

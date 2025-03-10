@@ -70,8 +70,6 @@
 
     function linearRegresion($year, $manufacturer, $model, $mileage){
 
-
-
       if($mileage == 0){
         $average_query = "SELECT AVG(listing_price) average " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
         $average_resuslt = $this->execQuery($average_query);
@@ -100,6 +98,9 @@
     }
 
     function linearRegresionSecondVersion($year, $manufacturer, $model, $mileage){
+
+      // version using php, calculation in the server with only 100 results to avoid performance issues.
+      // not used.
 
       $result = [
         'cars' => [],

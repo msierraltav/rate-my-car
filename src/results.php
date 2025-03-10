@@ -26,9 +26,19 @@
   if($result){
     $data = $result;
   }
+
+  $mileageMessage = "";
+  if($mileage > 0){
+    $lower_mileage = $mileage * 0.80;
+    $upper_mileage = $mileage * 1.20;
+    $mileageMessage = "Note: showing cars with similar mileage between $lower_mileage and $upper_mileage";
+  }
 ?>
 <div class="results">
-  <div><p>Price prediction: $<?php echo number_format($predictedPrice, 2); ?></p></div>
+  <div>
+    <div class="prediction">Price prediction: $<?php echo number_format($predictedPrice, 2); ?></div>
+    <div class="notes"><?php echo $mileageMessage; ?></div>
+  </div>
   <?php if (count($data) > 0): ?>
     <table class="result-table">
       <thead>

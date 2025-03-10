@@ -94,3 +94,15 @@ body {
   gap: 1rem;
 }
 
+.notes{
+  display: block;
+  color: #505050;
+  font-size: smaller;
+}
+
+.prediction{
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
