@@ -4,6 +4,11 @@ function parseCarInput(vehicle, mileage) {
     event.preventDefault();
   }
 
+  if (mileage !== '' && (isNaN(parseInt(mileage, 10)) || parseInt(mileage, 10) < 0)) {
+    alert("Mileage must be a number greater than zero or empty");
+    return;
+  }
+
   let car = {
     year: 0,
     manufacturer: '',

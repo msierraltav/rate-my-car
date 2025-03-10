@@ -15,9 +15,9 @@ Objectives
 
 #### actions
 
-- The user writes in the input one
-
-- The user input vehicle and mileage
+- The user writes in the input year and maker.
+- The user writes year, maker and modal.
+- The user input vehicle data and mileage.
 
 
 ### Results Page
@@ -35,3 +35,8 @@ Objectives
 
 ##  Search and Data
 
+Using linear regresion we need to predict the price of the vehicle based on the mileage and price of previous cars in our registry.
+
+- The calculations are executed using the database management system postgress, this is hard to debug but faster (based on this [article](articlehttps://www.linkedin.com/pulse/pure-sql-10x-faster-than-php-use-queries-much-you-can-hadi-mirzaie-gwl6f/))
+- Also postgreSQL have inbuilt methods to calculate the slope and the intersection makes the work easier.
+- 
