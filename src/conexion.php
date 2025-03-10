@@ -70,17 +70,27 @@
 
     function linearRegresion($year, $manufacturer, $model, $mileage){
 
-      $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, -1 , 0, false);
-      $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, -1 , 0, false);
 
-      $slope_result = $this->execQuery($slope_query);
-      $intercept_result = $this->execQuery($intercept_query);
 
-      $slope = $slope_result[0]['slope'];
-      $intercept = $intercept_result[0]['intercept'];
-
-      $predicted_price = $intercept + ($slope * $mileage);
-      return $predicted_price;
+      if($mileage == 0){
+        $average_query = "SELECT AVG(listing_price) average " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
+        $average_resuslt = $this->execQuery($average_query);
+        $average = $average_resuslt[0]['average'];
+        return $average;
+      }
+      else{
+        $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
+        $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
+  
+        $slope_result = $this->execQuery($slope_query);
+        $intercept_result = $this->execQuery($intercept_query);
+  
+        $slope = $slope_result[0]['slope'];
+        $intercept = $intercept_result[0]['intercept'];
+  
+        $predicted_price = $intercept + ($slope * $mileage);
+        return $predicted_price;
+      }
     }
 
     function getVehicleList($year, $manufacturer, $model, $mileage){
