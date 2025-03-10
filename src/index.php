@@ -7,13 +7,20 @@
     </head>
     <body>
         <h1>Rate my Car</h1>
+        <section class="tips">
+        <div>
+          <p>Tips for your search: </p>
+        </div>
+        <div>
+           <ul>
+            <li>Follow the order : year , maker , model</li>
+            <li>Enter the Year</li>
+            <li>Enter the Maker with '-' separated  eg: Rolls-Royce</li>
+            <li>The model is opcional but recomended.</li>
+          </ul>
+        </div>
+        </section>
 
-        <?php
-          include_once('conexion.php');
-          $conexion = new Conexion();
-          $conexion->ConexionDB();
-        ?>
-        
         <section>
           <div class="input-form">
             <form method="post" action="#">
@@ -26,10 +33,15 @@
                   <label for="mileage">Mileage</label>
                   <input type="text" id="mileage" placeholder="6544">
                 </div>
-                <input class="submit-button" type="submit" value="Submit" onclick="submitForm()">
+                <input class="submit-button" type="submit" value="Submit" onclick="parseCarInput(document.getElementById('vehicle').value, document.getElementById('mileage').value)">
               </div>
             </form>
           </div>
         </section>
+        <section>
+          <div id="results">
+          </div>
+        </section>
+
     </body>
 </html>

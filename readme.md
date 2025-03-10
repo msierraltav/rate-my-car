@@ -23,7 +23,7 @@ This project was built using docker containers to run a development server. I de
 docker build -t php-server .
 
 # then start your development container.
-docker run -p 8080:80 -d -v $(pwd)/src:/var/www/html/ php-server
+docker run -p 80:80 --env-file ./.env -v $(pwd)/src:/var/www/html/ php-server
 
 # and if you need enter to the container.
 docker exec -it 'id ' bash

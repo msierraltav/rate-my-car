@@ -7,6 +7,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
 }
 
 .input-form{
@@ -44,4 +45,30 @@ body {
 .submit-button{
   height: 2rem;
   padding: 0 1rem;
+}
+
+.tips{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: rgb(68, 68, 68);
+}
+
+.tips p2{
+  color: #505050;
+  font-size: smaller;
+}
+
+.tips ul{
+  list-style-type: none;
+  font-size: 0.7rem;
+}
+
+.results{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
