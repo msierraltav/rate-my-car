@@ -86,4 +86,11 @@ body {
   border-bottom: #858585 1px solid;
 }
 
+.location{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
 
