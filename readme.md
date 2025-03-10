@@ -147,3 +147,10 @@ if the car is new ( mileage 0 ) we take the average price from all the new cars 
 but if we don't especified mileage, we take all the cars with similar characteristics.
 
 Maybe we could use other correlations to check the price, like the location, because differents zones could have different cost maintentace or more hard roads.
+
+I upload the data using python and python, I think I could use more clean techniques because the data is extremly dirty.
+
+other techniche that we could use is separate the db between entities, like vehicles, seller, locations, and with a lot of hard work , the status of the vehicle. like colors, wheels and others,
+
+could be insteresting do calculations to how is the correlation between colors of cars, maybe the withe cars have a lower prices than the black cars.
+

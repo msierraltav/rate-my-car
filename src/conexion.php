@@ -61,8 +61,7 @@
       }
 
       $query .= " AND listing_price IS NOT NULL AND listing_mileage IS NOT NULL";
-
-      // zero is limitless!!  (???)
+      
       $query .= $limit == 0 ? "" : " LIMIT $limit" ;
 
       return $query;
@@ -95,56 +94,6 @@
       $cars_query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100, true, true);
       $result = $this->execQuery($cars_query);
       return $result;
-    }
-
-    function linearRegresionSecondVersion($year, $manufacturer, $model, $mileage){
-
-      // version using php, calculation in the server with only 100 results to avoid performance issues.
-      // not used.
-
-      $result = [
-        'cars' => [],
-        'predicted_price' => 0,
-        'debug' => ''
-      ];
-
-      $query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100);
-
-      //$result['debug'] = $query;
-
-      $result['cars'] = $this->execQuery($query);
-      
-      // lets calculate the predicted price using linear regression
-      // X = mileage, Y = price
-      $total = count($result['cars']);
-      $mileage_sum = 0;
-      $price_sum = 0;
-      $mileage_avg = 0;
-      $price_avg = 0;
-
-      foreach ($result['cars'] as $car) {
-        $mileage_sum += $car['listing_mileage'];
-        $price_sum += $car['listing_price'];
-      }
-
-      $mileage_avg = $mileage_sum / $total;
-      $price_avg = $price_sum / $total;
-
-      $numerator = 0;
-      $denominator = 0;
-
-      foreach ($result['cars'] as $car) {
-        $numerator += ($car['listing_mileage'] - $mileage_avg) * ($car['listing_price'] - $price_avg);
-        $denominator += ($car['listing_mileage'] - $mileage_avg) * ($car['listing_mileage'] - $mileage_avg);
-      }
-
-      $beta1 = $numerator / $denominator;
-      $beta0 = $price_avg - $beta1 * $mileage_avg;
-
-      $result['predicted_price'] = $beta0 + $beta1 * $mileage;
-
-      return $result;
-
     }
   }
 ?>
