@@ -23,7 +23,7 @@
       return $connexion;
     }
 
-    function query($query) {
+    function execQuery($query) {
       $conn = $this->ConexionDB();
       $stmt = $conn->query($query);
       $data = [];
@@ -32,13 +32,13 @@
           $data[] = $row;
         }
       }
-      $conn = null; // end the connection
+      $conn = null;
       return $data;
     }
 
-    function queryBuilder($year, $manufacturer, $model, $mileage) {
+    function queryBuilder($year, $manufacturer, $model, $mileage, $limit = 0, $where = true) {
 
-      $query = "SELECT * FROM vehicle_inventory";
+      $query = $where ? "SELECT * FROM vehicle_inventory" : "FROM vehicle_inventory";
 
       if (!empty($year)) {
         $query .= " WHERE model_year='$year'";
@@ -56,20 +56,48 @@
         $query .= " AND listing_mileage = '$mileage'";
       }
 
-      $query .= " AND listing_price IS NOT NULL AND listing_mileage IS NOT NULL LIMIT 100";
+      $query .= " AND listing_price IS NOT NULL AND listing_mileage IS NOT NULL";
 
-      return $this->query($query);
+      // zero is limitless  (???)
+      $query .= $limit == 0 ? "" : " LIMIT $limit" ;
+
+      return $query;
+    }
+
+    function linearRegresion($year, $manufacturer, $model, $mileage){
+
+      $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, $mileage, 0, false);
+      $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, $mileage, 0, false);
+
+      $slope_result = $this->execQuery($slope_query);
+      $intercept_result = $this->execQuery($intercept_query);
+
+      $slope = $slope_result[0]['slope'];
+      $intercept = $intercept_result[0]['intercept'];
+
+      $predicted_price = $intercept + ($slope * $mileage);
+      return $predicted_price;
+    }
+
+    function getVehicleList($year, $manufacturer, $model, $mileage){
+      $cars_query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100);
+      $result = $this->execQuery($cars_query);
+      return $result;
     }
 
     function linearRegresionSecondVersion($year, $manufacturer, $model, $mileage){
 
-      // Initialize structure to hold query info and predicted price
       $result = [
         'cars' => [],
-        'predicted_price' => 0
+        'predicted_price' => 0,
+        'debug' => ''
       ];
 
-      $result['cars'] = $this->queryBuilder($year, $manufacturer, $model, $mileage);
+      $query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100);
+
+      //$result['debug'] = $query;
+
+      $result['cars'] = $this->execQuery($query);
       
       // lets calculate the predicted price using linear regression
       // X = mileage, Y = price

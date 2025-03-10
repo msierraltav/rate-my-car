@@ -12,15 +12,19 @@
 
   $conexion = new Conexion();
 
+  $prediction = $conexion->linearRegresion($year, $manufacturer, $model, $mileage);
   // get a max of 100 vehicles with the same year, manufacturer and model.
-  $result = $conexion->linearRegresionSecondVersion($year, $manufacturer, $model, $mileage);
+  $result = $conexion->getVehicleList($year, $manufacturer, $model, $mileage);
 
   $data = [];
   $predictedPrice = 0;
 
+  if($prediction){
+    $predictedPrice = $prediction;
+  }
+
   if($result){
-    $data = $result['cars'];
-    $predictedPrice = $result['predicted_price'];
+    $data = $result;
   }
 ?>
 <div class="results">
