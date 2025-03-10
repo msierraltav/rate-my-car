@@ -18,8 +18,6 @@
     $data = $result;
   }
 ?>
-
-<h1> Rate my Car - Results </h1>
 <div class="results">
   <?php if (count($data) > 0): ?>
     <table class="result-table">
