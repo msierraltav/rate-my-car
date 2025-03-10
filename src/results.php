@@ -31,7 +31,7 @@
   if($mileage > 0){
     $lower_mileage = $mileage * 0.80;
     $upper_mileage = $mileage * 1.20;
-    $mileageMessage = "Note: showing cars with similar mileage between $lower_mileage and $upper_mileage";
+    $mileageMessage = "Note: showing ". number_format(count($data)) ." cars with similar mileage between $lower_mileage and $upper_mileage";
   }
 ?>
 <div class="results">
