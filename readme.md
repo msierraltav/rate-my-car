@@ -136,3 +136,6 @@ following with the vehicle information we have
 - dealer_vdp_last_seen_date (456) date
 - listing_status : [nan 'in_transit']
 
+# 09 March 2025
+
+After analyce the data , the way to predict the po

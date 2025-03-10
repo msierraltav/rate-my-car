@@ -66,8 +66,8 @@
 
     function linearRegresion($year, $manufacturer, $model, $mileage){
 
-      $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, $mileage, 0, false);
-      $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, $mileage, 0, false);
+      $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope ";
+      $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept";W
 
       $slope_result = $this->execQuery($slope_query);
       $intercept_result = $this->execQuery($intercept_query);
