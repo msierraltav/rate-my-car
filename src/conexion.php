@@ -22,8 +22,7 @@
 
     function execQuery($query) {
       $conn = $this->ConexionDB();
-      $stmt = $conn->prepare($query);
-      $stmt->execute();
+      $stmt = $conn->query($query);
       $data = [];
       if ($stmt) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
