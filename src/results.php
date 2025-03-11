@@ -27,17 +27,24 @@
     $data = $result;
   }
 
-  $mileageMessage = "";
+  $notesMessage = "";
   if($mileage > 0){
     $lower_mileage = $mileage * 0.80;
     $upper_mileage = $mileage * 1.20;
-    $mileageMessage = "Note: showing ". number_format(count($data)) ." cars with similar mileage between $lower_mileage and $upper_mileage";
+    $notesMessage = "Note: showing ". number_format(count($data)) ." cars with similar mileage between $lower_mileage and $upper_mileage";
+  }
+
+  if($mileage == 0){
+    $average = $conexion->getAverage($year, $manufacturer, $model, $mileage);
+    if($average){
+      $notesMessage = "Note: average price of existing NEW cars in sale" . number_format($average,2);
+    }
   }
 ?>
 <div class="results">
   <div>
     <div class="prediction">Price prediction: $<?php echo number_format($predictedPrice, 2); ?></div>
-    <div class="notes"><?php echo $mileageMessage; ?></div>
+    <div class="notes"><?php echo $notesMessage; ?></div>
   </div>
   <?php if (count($data) > 0): ?>
     <table class="result-table">

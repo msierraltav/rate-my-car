@@ -1,31 +1,29 @@
 <?php
   class Conexion {
-
     function ConexionDB() {
-
+      $connexion = null;
       $hosturl = getenv('POSTGRES_HOST');
       $hostport = getenv('POSTGRES_PORT');
-
       $user = getenv('POSTGRES_USER');
       $password = getenv('POSTGRES_PASSWORD');
       $dbName = getenv('POSTGRES_DB');
       $dbPort = getenv('POSTGRES_PORT');
-      $connexion = null;
-
       $connectionString = "pgsql:host=$hosturl;port=$hostport;dbname=$dbName;user=$user;password=$password";
 
       try{
         $connexion = new PDO ($connectionString);
       }
       catch (PDOException $error){
-        echo "Error: " . $error->getMessage();
+        echo "Error ⚠️";
+        //echo "Error: " . $error->getMessage();
       }
       return $connexion;
     }
 
     function execQuery($query) {
       $conn = $this->ConexionDB();
-      $stmt = $conn->query($query);
+      $stmt = $conn->prepare($query);
+      $stmt->execute();
       $data = [];
       if ($stmt) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -37,6 +35,11 @@
     }
 
     function queryBuilder($year, $manufacturer, $model, $mileage, $limit = 0, $where = true, $between = false) {
+
+      $manufacturer = htmlspecialchars(strtolower($manufacturer));
+      $model = strtolower(htmlspecialchars($model));
+      $year = intval(htmlspecialchars($year));
+      $mileage = intval(htmlspecialchars($mileage));
 
       $query = $where ? "SELECT * FROM vehicle_inventory" : "FROM vehicle_inventory";
 
@@ -61,24 +64,20 @@
       }
 
       $query .= " AND listing_price IS NOT NULL AND listing_mileage IS NOT NULL";
-      
+
       $query .= $limit == 0 ? "" : " LIMIT $limit" ;
 
       return $query;
     }
 
     function linearRegresion($year, $manufacturer, $model, $mileage){
+        $year = intval(htmlspecialchars($year));
+        $manufacturer = htmlspecialchars(strtolower($manufacturer));
+        $model = htmlspecialchars(strtolower($model));
+        $mileage = intval(htmlspecialchars($mileage));
 
-      if($mileage == 0){
-        $average_query = "SELECT AVG(listing_price) average " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
-        $average_resuslt = $this->execQuery($average_query);
-        $average = $average_resuslt[0]['average'];
-        return $average;
-      }
-      else{
-        $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
-        $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
-  
+        $slope_query = "SELECT regr_slope(listing_price, listing_mileage) slope " . $this->queryBuilder($year, $manufacturer, $model, -1 , 0, false, false);
+        $intercept_query = "SELECT regr_intercept(listing_price, listing_mileage) intercept " . $this->queryBuilder($year, $manufacturer, $model, -1 , 0, false, false);
         $slope_result = $this->execQuery($slope_query);
         $intercept_result = $this->execQuery($intercept_query);
   
@@ -87,10 +86,27 @@
   
         $predicted_price = $intercept + ($slope * $mileage);
         return $predicted_price;
-      }
+    }
+
+    function getAverage($year, $manufacturer, $model, $mileage){
+        $year = intval(htmlspecialchars($year));
+        $manufacturer = htmlspecialchars(strtolower($manufacturer));
+        $model = htmlspecialchars(strtolower($model));
+        $mileage = intval(htmlspecialchars($mileage));
+
+        $average_query = "SELECT AVG(listing_price) average " . $this->queryBuilder($year, $manufacturer, $model, $mileage , 0, false, true);
+        $average_result = $this->execQuery($average_query);
+        $average = $average_result[0]['average'];
+        return $average;
     }
 
     function getVehicleList($year, $manufacturer, $model, $mileage){
+
+      $year = intval(htmlspecialchars($year));
+      $manufacturer = htmlspecialchars(strtolower($manufacturer));
+      $model = htmlspecialchars(strtolower($model));
+      $mileage = intval(htmlspecialchars($mileage));
+
       $cars_query = $this->queryBuilder($year, $manufacturer, $model, $mileage, 100, true, true);
       $result = $this->execQuery($cars_query);
       return $result;
