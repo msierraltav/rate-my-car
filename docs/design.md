@@ -47,4 +47,17 @@ Using linear regression we need to predict the price of the vehicle based on the
 
 ## Security
 
-The system from the first moment was exposed to the internet and received a lot of attacks by automated bots trying to gain permissions. Therefore, it is important to set strong passwords and prevent SQL injection attacks. Some of these recommendations were implemented on the site to avoid issues.
+- The system was exposed to the internet from its launch and received numerous attacks by automated bots attempting to gain permissions. Therefore, it is important to set strong passwords and prevent SQL injection attacks. Several of these recommendations were implemented on the site to avoid security issues.
+
+## Backend
+- Developed using PHP 8 running in a docker container to have access to updates, isolation and security.
+
+## Database
+
+- I decided to use a modern implementation of a relational database, PostgreSQL. This helps us perform calculations, provides great performance for large datasets, and offers better security than MySQL.
+
+- For the moment, it is only one table with all the information, but for the next iteration, the idea is to split the information into entities like Vehicles, sellers, cities, car colors, wheel configurations, etc. As I mentioned above, this will make it easier to obtain new correlations to check variance in price, like price vs. color, price vs. city, or which companies have lower prices.
+
+## Frontend
+- For the frontend, it was written using simple HTML, CSS and JavaScript, with a minimalist and clean dark design.
+
