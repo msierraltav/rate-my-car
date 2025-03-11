@@ -36,6 +36,15 @@ Objectives
 - Additionally, in notes, if the user enters the mileage, the system will search for similar cars within a window of 80% to 120% of the input mileage.
 This will be reflected as a message with the upper and lower mileage range for the current set of cars with the same characteristics.
 
+## System
+
+- Running in Docker containers to easily transfer to more secure servers
+- Using PHP and Apache for backend
+- Simple frontend using HTML, CSS, and JavaScript
+- Database using PostgreSQL running in a Docker container
+
+The entire system can be easily transferred to different servers or to the cloud.
+
 ##  Search and Data
 
 Using linear regression we need to predict the price of the vehicle based on the mileage and price of previous cars in our registry.
