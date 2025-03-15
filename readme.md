@@ -2,6 +2,8 @@
 
 The objective of this project is to create a simple internal search interface for estimating the average market value for a year/make/model.
 
+![image](docs/img/image.png)
+
 ## Documents
 
 [Design Document](./docs/design.md)
